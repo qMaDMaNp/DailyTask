@@ -9,14 +9,21 @@ exports.seed = function(knex, Promise) {
             title: 'task1',
             start_time: '12.12',
             end_time: '12.30',
-            date: new Date()
+            date: formatDate(new Date())
         },
         {
             title: 'task2',
             start_time: '12.12',
             end_time: '13.30',
-            date: new Date()
+            date: formatDate(new Date())
         },
       ]);
     });
+    function formatDate(date) {
+        let day = date.getDate();
+        let monthIndex = (date.getMonth()+1);
+        let year = date.getFullYear();
+        console.log(day);
+        return day + '/' + monthIndex + '/' + year;
+    }
 };
