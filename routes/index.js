@@ -28,16 +28,18 @@ router.post('/', (req, res) => {
 });
 
 /* PUT request for editing. */
-// router.put('/', (req, res) => {
-//     const id = req.param('edit-button');
-//     // knex('task')
-//     //     .where('id', id)
-//     //     .update()
-//     //     .then(() => {
-//     //        res.redirect('/')
-//     //     });
-//     res.redirect('/')
-// });
+router.put('/', (req, res) => {
+    const id = req.param('edit-button');
+    // knex('task')
+    //     .where('id', id)
+    //     .update()
+    //     .then(() => {
+    //        res.redirect('/')
+    //     });
+    console.log(id);
+    console.log(req.body.title);
+    res.redirect('/')
+});
 
 /* DELETE request. */
 router.delete('/', (req, res) => {
