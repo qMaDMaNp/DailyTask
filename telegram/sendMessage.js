@@ -2,7 +2,7 @@ module.exports = (data) => {
     const Telegraf = require('telegraf');
     const dateFormat = require('dateformat');
 
-    const bot = new Telegraf(process.env.BOT_TOKEN || '609045733:AAHl8vAxr-lH3tEGG4tF1FiFNJVTbs4D1Rg' );
+    const bot = new Telegraf(process.env.BOT_TOKEN);
     const chatId = '@pavelmaker';
 
     //form message title
