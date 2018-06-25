@@ -3,7 +3,7 @@ module.exports = (data) => {
     const dateFormat = require('dateformat');
 
     const bot = new Telegraf(process.env.BOT_TOKEN);
-    const chatId = '@pavelmaker';
+    const chatId = '';
 
     //form message title
     async function setTime() {
