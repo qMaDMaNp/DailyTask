@@ -30,15 +30,17 @@ router.post('/', (req, res) => {
 /* PUT request for editing. */
 router.put('/', (req, res) => {
     const id = req.param('edit-button');
-    // knex('task')
-    //     .where('id', id)
-    //     .update()
-    //     .then(() => {
-    //        res.redirect('/')
-    //     });
-    console.log(id);
-    console.log(req.body.title);
-    res.redirect('/')
+    let task = {
+        title: req.body.title,
+        start_time: req.body.start_time,
+        end_time: req.body.end_time
+    };
+    knex('task')
+        .where('id', id)
+        .update(task)
+        .then(() => {
+           res.redirect('/')
+        });
 });
 
 /* DELETE request. */

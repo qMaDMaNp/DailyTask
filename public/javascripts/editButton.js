@@ -1,5 +1,4 @@
 let editButtons = document.getElementsByName("edit");
-let pageBody = document.getElementsByTagName("body")[0];
 
 
 editButtons.forEach((elem) => {
@@ -35,25 +34,28 @@ editButtons.forEach((elem) => {
             titleInput.type = 'text';
             titleInput.value = elemTitle;
             titleInput.name = 'title';
-            titleInput.id = 'pavlo';
+            titleInput.id = 'title-edit';
 
         let startInput = document.createElement('input');
             startInput.type = 'text';
             startInput.value = elemStart;
-            startInput.name = 'start-time';
+            startInput.name = 'start_time';
+            startInput.id = 'start_time-edit';
+
 
         let endInput = document.createElement('input');
             endInput.type = 'text';
             endInput.value = elemEnd;
             endInput.name = 'end_time';
+            endInput.id = 'end_time-edit';
 
         //Create save form
         let saveForm =
             "<form action=\"/?_method=PUT\" method=\"post\">" +
-                "<input type=\"hidden\" name=\"title\" id=\"pavlik\">" +
-                "<input type=\"hidden\" name=\"start_time\">" +
-                "<input type=\"hidden\" name=\"end_time\">" +
-            "<button class=\"btn btn-success\" type=\"submit\" name=\"edit-button\" value=" + elem.value + " + >Save</button>" +
+                "<input type=\"hidden\" name=\"title\" id=\"title-edited\">" +
+                "<input type=\"hidden\" name=\"start_time\" id=\"start_time-edited\">" +
+                "<input type=\"hidden\" name=\"end_time\" id=\"end_time-edited\">" +
+            "<button class=\"btn btn-success\" type=\"submit\" name=\"edit-button\" value=" + elem.value + ">Save</button>" +
             "</form>";
 
 
@@ -69,18 +71,27 @@ editButtons.forEach((elem) => {
         elementEndItem.appendChild(endInput);  //add inputs to view
         elemParent.innerHTML = saveForm; //add save form
 
+        //Set data for the hidden inputs
+        //Insert title  value
+        document.getElementById('title-edited').value = document.getElementById('title-edit').value;
+        //Insert start time value
+        document.getElementById('start_time-edited').value = document.getElementById('start_time-edit').value;
+        //Insert end time value
+        document.getElementById('end_time-edited').value = document.getElementById('end_time-edit').value;
+
         //Listen to form changes
-        document.getElementById('pavlo').addEventListener('change', () => {
-           console.log('pavlo value: ' + document.getElementById('pavlo').value);
-            document.getElementById('pavlik').value = document.getElementById('pavlo').value;
-            console.log('pavlik value: ' + document.getElementById('pavlik').value)
+        //Title listener
+        document.getElementById('title-edit').addEventListener('change', () => {
+            document.getElementById('title-edited').value = document.getElementById('title-edit').value;
         });
-        //Delete buttons
-
-        //Add new elements
-
-
-        //Send server request with data;
+        //Start time listener
+        document.getElementById('start_time-edit').addEventListener('change', () => {
+            document.getElementById('start_time-edited').value = document.getElementById('start_time-edit').value;
+        });
+        //End time listener
+        document.getElementById('end_time-edit').addEventListener('change', () => {
+            document.getElementById('end_time-edited').value = document.getElementById('end_time-edit').value;
+        });
 
 
     });
