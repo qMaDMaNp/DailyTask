@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const knex = require('../db/knex');
+const telegram = require('../telegram/sendMessage');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -29,7 +30,7 @@ router.post('/', (req, res) => {
 
 /* PUT request for editing. */
 router.put('/', (req, res) => {
-    const id = req.param('edit-button');
+    const id = req.param('save-button');
     let task = {
         title: req.body.title,
         start_time: req.body.start_time,
@@ -39,7 +40,10 @@ router.put('/', (req, res) => {
         .where('id', id)
         .update(task)
         .then(() => {
-           res.redirect('/')
+            telegram(req.body)
+        })
+        .then(() => {
+            res.redirect('/')
         });
 });
 
